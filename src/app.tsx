@@ -6,6 +6,8 @@ import { getData } from "./api";
 export default function App() {
   const [data, setData] = useState([]);
 
+  const [regions, setRegions] = useState([]);
+
   useEffect(() => {
     getData().then(setData);
   }, []);
