@@ -12,11 +12,11 @@ const api = async <T>(url: string) => {
 
 }
 export const getData = async () => {
-  const rawData = await api<IRegionResponse[]>('opendata/7705851331-stat_library/data-2016-11-10T00-00-00-structure-2016-09-12T00-00-00.json');
+  const rawData = await api<IRegionResponse[]>('/opendata/7705851331-stat_library/data-2016-11-10T00-00-00-structure-2016-09-12T00-00-00.json');
   const data:IRegion[] = rawData.map(rawRegions => {
     const region: IRegion = {
       order: rawRegions.order,
-      fullname: rawRegions.fullname,
+      fullName: rawRegions.fullname,
       kopuk: rawRegions.kopuk,
       territory: rawRegions.territory,
       address: rawRegions.address,
