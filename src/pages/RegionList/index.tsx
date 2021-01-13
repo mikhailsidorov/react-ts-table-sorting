@@ -21,6 +21,7 @@ export const RegionList:React.FC<RegionListProps> = ({ regions }) => {
       key: "libraries",
       title: "Библиотеки",
       dataIndex: "libraries",
+      sorter: (a, b) => a.libraries - b.libraries,
     },
     {
       key: "fullName",
