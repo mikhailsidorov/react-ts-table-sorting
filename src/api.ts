@@ -1,8 +1,9 @@
-import {report} from "process";
-import { ILibraryResponse, ILibrary } from 'models';
+import { report } from "process";
+import { IRegionResponse, IRegion } from 'models';
 
 const api = async <T>(url: string) => {
   const response = await fetch(url);
+
   if (!response.ok) {
     throw new Error(response.statusText);
   }
@@ -11,57 +12,57 @@ const api = async <T>(url: string) => {
 
 }
 export const getData = async () => {
-  const rawData = await api<ILibraryResponse[]>('opendata/7705851331-stat_library/data-2016-11-10T00-00-00-structure-2016-09-12T00-00-00.json');
-  const data:ILibrary[] = rawData.map(rawLib => {
-    const lib: ILibrary = {
-      order: rawLib.order,
-      fullname: rawLib.fullname,
-      kopuk: rawLib.kopuk,
-      territory: rawLib.territory,
-      address: rawLib.address,
-      formName: rawLib.formname,
-      period: rawLib.period,
-      libraries: rawLib.libraries,
-      buildingsRepair: rawLib.buildings_repair,
-      buildingsDisrepair: rawLib.buildings_disrepair,
-      buildingsManagement: rawLib.buildings_management,
-      librariesComputers: rawLib.libraries_computers,
-      internet: rawLib.internet,
-      site: rawLib.site,
-      numberOfPersonalComputersInLibrariesUnits: rawLib.number_of_personal_computers_in_libraries_units,
-      computers: rawLib.computers,
-      digitalCatalogs: rawLib.digital_catalogs,
-      internetCatalogs: rawLib.internet_catalogs,
-      electronicCatalogueVolume: rawLib.electronic_catalogue_volume,
-      internetCatalogueVolume: rawLib.internet_catalogue_volume,
-      users: rawLib.users,
-      usersChildren: rawLib.users_children,
-      visits: rawLib.visits,
-      receivedCopies: rawLib.received_copies,
-      receivedWlectronic: rawLib.received_electronic,
-      outOfInstances: rawLib.out_of_instances,
-      droppedCopies: rawLib.dropped_copies,
-      copies: rawLib.copies,
-      copiesElectronic: rawLib.copies_electronic,
-      copiesIssued: rawLib.copies_issued,
-      issuedElectronic: rawLib.issued_electronic,
-      copiesIssuedChildren: rawLib.copies_issued_children,
-      subscribers: rawLib.subscribers,
-      individualSubscribersInformationServicesUnits: rawLib.individual_subscribers_information_services_units,
-      visitsSites: rawLib.visits_sites,
-      employees: rawLib.employees,
-      employeesStaff: rawLib.employees_staff,
-      staffHigheeducated: rawLib.staff_higheeducated,
-      staffVocationalPeople: rawLib.staff_vocational_people,
-      funds: rawLib.funds,
-      fundsBudget: rawLib.funds_budget,
-      fundsEntrepreneurial: rawLib.funds_entrepreneurial,
-      fundsMainActivityThousandRubles: rawLib.funds_main_activity_thousand_rubles,
-      fundsUsed: rawLib.funds_used,
-      fundsStaffThousandRubles: rawLib.funds_staff_thousand_rubles,
-      fundsAcquisition: rawLib.funds_acquisition,
+  const rawData = await api<IRegionResponse[]>('opendata/7705851331-stat_library/data-2016-11-10T00-00-00-structure-2016-09-12T00-00-00.json');
+  const data:IRegion[] = rawData.map(rawRegions => {
+    const region: IRegion = {
+      order: rawRegions.order,
+      fullname: rawRegions.fullname,
+      kopuk: rawRegions.kopuk,
+      territory: rawRegions.territory,
+      address: rawRegions.address,
+      formName: rawRegions.formname,
+      period: rawRegions.period,
+      libraries: rawRegions.libraries,
+      buildingsRepair: rawRegions.buildings_repair,
+      buildingsDisrepair: rawRegions.buildings_disrepair,
+      buildingsManagement: rawRegions.buildings_management,
+      librariesComputers: rawRegions.libraries_computers,
+      internet: rawRegions.internet,
+      site: rawRegions.site,
+      numberOfPersonalComputersInLibrariesUnits: rawRegions.number_of_personal_computers_in_libraries_units,
+      computers: rawRegions.computers,
+      digitalCatalogs: rawRegions.digital_catalogs,
+      internetCatalogs: rawRegions.internet_catalogs,
+      electronicCatalogueVolume: rawRegions.electronic_catalogue_volume,
+      internetCatalogueVolume: rawRegions.internet_catalogue_volume,
+      users: rawRegions.users,
+      usersChildren: rawRegions.users_children,
+      visits: rawRegions.visits,
+      receivedCopies: rawRegions.received_copies,
+      receivedWlectronic: rawRegions.received_electronic,
+      outOfInstances: rawRegions.out_of_instances,
+      droppedCopies: rawRegions.dropped_copies,
+      copies: rawRegions.copies,
+      copiesElectronic: rawRegions.copies_electronic,
+      copiesIssued: rawRegions.copies_issued,
+      issuedElectronic: rawRegions.issued_electronic,
+      copiesIssuedChildren: rawRegions.copies_issued_children,
+      subscribers: rawRegions.subscribers,
+      individualSubscribersInformationServicesUnits: rawRegions.individual_subscribers_information_services_units,
+      visitsSites: rawRegions.visits_sites,
+      employees: rawRegions.employees,
+      employeesStaff: rawRegions.employees_staff,
+      staffHigheeducated: rawRegions.staff_higheeducated,
+      staffVocationalPeople: rawRegions.staff_vocational_people,
+      funds: rawRegions.funds,
+      fundsBudget: rawRegions.funds_budget,
+      fundsEntrepreneurial: rawRegions.funds_entrepreneurial,
+      fundsMainActivityThousandRubles: rawRegions.funds_main_activity_thousand_rubles,
+      fundsUsed: rawRegions.funds_used,
+      fundsStaffThousandRubles: rawRegions.funds_staff_thousand_rubles,
+      fundsAcquisition: rawRegions.funds_acquisition,
     }
-    return lib;
+    return region;
   })
   return data;
 }

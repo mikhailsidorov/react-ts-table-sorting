@@ -1,11 +1,13 @@
 import React, { useEffect, useState, FC } from 'react';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { Layout } from 'antd';
 import './app.css';
 import { getData } from "./api";
-import { ILibrary } from './models';
+import { IRegion } from './models';
+import { RegionList, RegionDetail } from './pages';
 
 export const App:FC = () => {
-  const [data, setData] = useState<ILibrary[]>([]);
+  const [data, setData] = useState<IRegion[]>([]);
 
   useEffect(() => {
     getData().then((newData) => {
@@ -15,9 +17,11 @@ export const App:FC = () => {
 
   return (
     <Layout>
-      <pre>
-        { JSON.stringify(data, null, 2) }
-      </pre>
+      <Switch>
+        <Route path="/regions/:order" component={RegionDetail} />
+        <Route path="/regions" component={() => <RegionList regions={data} />} />
+        <Redirect to="/regions" />
+      </Switch>
     </Layout>
   );
 }
