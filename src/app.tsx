@@ -1,5 +1,5 @@
 import React, { useEffect, useState, FC } from 'react';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { Switch, Route, Redirect, Link, useParams } from 'react-router-dom';
 import { Layout } from 'antd';
 import './app.css';
 import { getData } from "./api";
@@ -18,7 +18,7 @@ export const App:FC = () => {
   return (
     <Layout>
       <Switch>
-        <Route path="/regions/:order" component={RegionDetail} />
+        <Route path="/regions/:order" component={()  => <RegionDetail regions={data} />} />
         <Route path="/regions" component={() => <RegionList regions={data} />} />
         <Redirect to="/regions" />
       </Switch>

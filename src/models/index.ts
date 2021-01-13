@@ -1,6 +1,7 @@
 export interface IRegion {
+    [ key: string ]: number | string;
     order: number;
-    fullname: string;
+    fullName: string;
     kopuk: string;
     territory: string;
     address: string;
