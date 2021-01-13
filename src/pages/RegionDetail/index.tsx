@@ -1,6 +1,8 @@
+import React, { Fragment } from 'react';
+import { ColumnsType } from "antd/es/table";
 import { IRegion } from 'models';
-import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Table } from 'antd';
 
 interface IRegionDetailProps {
   regions: IRegion[]
@@ -10,6 +12,10 @@ interface IRegionDetailParams {
   order: string;
 }
 
+interface IProperty {
+    [key: string]: string | number
+}
+
 export const RegionDetail:React.FC<IRegionDetailProps> = ({ regions }) => {
   const { order } = useParams<IRegionDetailParams>();
 
@@ -17,21 +23,30 @@ export const RegionDetail:React.FC<IRegionDetailProps> = ({ regions }) => {
     return region.order === Number(order);
   });
 
-  let properties: JSX.Element[] | null = null;
+  let columns: ColumnsType<IProperty> = [
+    {
+      key: "name",
+      title: "Свойство",
+      dataIndex: "name"
+    },
+    {
+      key: "value",
+      title: "Значение",
+      dataIndex: "value"
+    }
+  ]
+  let dataSource: IProperty[] | null = null
   if (detailRegion) {
-    properties = Object.keys(detailRegion).map((regionProperty: string) => (
-      <li key={regionProperty}>{regionProperty}: {detailRegion[regionProperty]}</li>
-    ))
+    dataSource = Object.keys(detailRegion).map(propertyName => {
+      return {name: propertyName, value: detailRegion[propertyName]}
+    })
   }
 
   return (
-    <main>
-      {detailRegion ? (
-        <article>
-          <h2>{detailRegion.fullName}</h2>
-          {properties ? <ul>{properties}</ul> : null}
-        </article>
-        ) : null }
-    </main>
+    <Fragment>
+      {detailRegion && dataSource ?
+        <Table title={() => <h2>{detailRegion.territory}</h2>}rowKey="name" pagination={false} columns={columns} dataSource={dataSource} />
+      : null}
+    </Fragment>
   )
 }
