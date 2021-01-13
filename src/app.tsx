@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FC } from 'react';
 import { Layout } from 'antd';
 import './app.css';
 import { getData } from "./api";
+import { ILibrary } from './models';
 
-export default function App() {
-  const [data, setData] = useState([]);
+export const App:FC = () => {
+  const [data, setData] = useState<ILibrary[]>([]);
 
   useEffect(() => {
-    getData().then(setData);
+    getData().then((newData) => {
+      setData(newData);
+    });
   }, []);
 
   return (
