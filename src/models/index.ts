@@ -1,4 +1,4 @@
-export interface ILibrary {
+export interface IRegion {
     order: number;
     fullname: string;
     kopuk: string;
@@ -47,7 +47,7 @@ export interface ILibrary {
     fundsAcquisition: number;
 }
 
-export interface ILibraryResponse {
+export interface IRegionResponse {
   order: number;
   fullname: string;
   kopuk: string;
