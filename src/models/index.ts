@@ -96,3 +96,7 @@ export interface IRegionResponse {
   funds_staff_thousand_rubles: number;
   funds_acquisition: number;
 }
+
+export interface IRegionListProps {
+  regions: IRegion[];
+}
