@@ -4,7 +4,7 @@
 
 * [Node](https://nodejs.org/en/download/)
 
-## Runing
+## Running
 
 ```
 npm install
